@@ -12,22 +12,25 @@ public class SnakeAndLadder {
         System.out.println("Welcome to Snake and Ladder Simulator");
 
         int playerPosition = START_POSITION;
+        int diceCount = 0;
         Random random = new Random();
 
+        // Loop until the player hits exactly 100
         while (playerPosition < WINNING_POSITION) {
             
             int dieRoll = random.nextInt(6) + 1;
+            diceCount++;
+            
             int option = random.nextInt(3);
 
             switch (option) {
                 case NO_PLAY:
+                    // Position remains the same
                     break;
                     
                 case LADDER:
                     if (playerPosition + dieRoll <= WINNING_POSITION) {
                         playerPosition += dieRoll;
-                    } else {
-                        System.out.println("Roll ignored! Needs exactly " + (WINNING_POSITION - playerPosition) + " to win.");
                     }
                     break;
                     
@@ -37,9 +40,12 @@ public class SnakeAndLadder {
                         playerPosition = 0;
                     }
                     break;
-            }   
-            System.out.println("Current Position: " + playerPosition);
+            }
+            System.out.println("Roll #" + diceCount + " | Die: " + dieRoll + " | Current Position: " + playerPosition);
         }
-        System.out.println("\nCongratulations! You reached exactly " + playerPosition + " and won the game!");
+
+        System.out.println("\n--- Game Over ---");
+        System.out.println("Total number of times the dice was played to win: " + diceCount);
+        System.out.println("Final Position: " + playerPosition);
     }
 }
