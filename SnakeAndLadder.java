@@ -10,18 +10,25 @@ public class SnakeAndLadder {
 
     public static void main(String[] args) {
         System.out.println("Welcome to Snake and Ladder Simulator");
+
         int playerPosition = START_POSITION;
         Random random = new Random();
 
         while (playerPosition < WINNING_POSITION) {
+            
             int dieRoll = random.nextInt(6) + 1;
             int option = random.nextInt(3);
+
             switch (option) {
                 case NO_PLAY:
                     break;
                     
                 case LADDER:
-                    playerPosition += dieRoll;
+                    if (playerPosition + dieRoll <= WINNING_POSITION) {
+                        playerPosition += dieRoll;
+                    } else {
+                        System.out.println("Roll ignored! Needs exactly " + (WINNING_POSITION - playerPosition) + " to win.");
+                    }
                     break;
                     
                 case SNAKE:
@@ -33,6 +40,6 @@ public class SnakeAndLadder {
             }   
             System.out.println("Current Position: " + playerPosition);
         }
-        System.out.println("\nCongratulations! You reached position " + playerPosition + " and won the game!");
+        System.out.println("\nCongratulations! You reached exactly " + playerPosition + " and won the game!");
     }
 }
