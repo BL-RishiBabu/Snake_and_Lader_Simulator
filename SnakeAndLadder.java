@@ -15,7 +15,6 @@ public class SnakeAndLadder {
         int diceCount = 0;
         Random random = new Random();
 
-        // Loop until the player hits exactly 100
         while (playerPosition < WINNING_POSITION) {
             
             int dieRoll = random.nextInt(6) + 1;
@@ -25,7 +24,6 @@ public class SnakeAndLadder {
 
             switch (option) {
                 case NO_PLAY:
-                    // Position remains the same
                     break;
                     
                 case LADDER:
